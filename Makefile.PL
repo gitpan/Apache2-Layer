@@ -29,7 +29,7 @@ my %WriteMakefileArgs = (
     'LWP::UserAgent' => '5.835',
     'mod_perl2' => '2.000004'
   },
-  'VERSION' => '0.01',
+  'VERSION' => '1.103360',
   'test' => {
     'TESTS' => 't/*.t'
   }

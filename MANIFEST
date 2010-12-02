@@ -3,11 +3,13 @@ Changes
 INSTALL
 LICENSE
 MANIFEST
+META.json
 META.yml
 Makefile.PL
 README
 dist.ini
 lib/Apache2/Layer.pm
+t/00-compile.t
 t/apache2-layer.t
 t/htdocs/delivery.html
 t/htdocs/index.html
@@ -19,7 +21,8 @@ t/htdocs/layered/dev/images/pix.png
 t/htdocs/layered/dev/images/pix2.png
 t/htdocs/layered/dev/index.html
 t/htdocs/layered/dev/new_images/pix.png
-t/htdocs/layered/dev/php/forms/form.php
+t/htdocs/layered/dev/php-ng/form.php
+t/htdocs/layered/dev/php/form.php
 t/htdocs/layered/dev/rc1/rc1.html
 t/htdocs/layered/dev/rc2/rc2.html
 t/htdocs/layered/newyearseve/delivery.html
@@ -32,7 +35,9 @@ t/htdocs/promotions.html
 t/lib/Test/Apache2/Layer/MapStorage.pm
 t/lib/Test/Apache2/Layer/RemoveArgs.pm
 t/release-eol.t
+t/release-kwalitee.t
 t/release-no-tabs.t
+t/release-pod-coverage.t
 t/release-pod-syntax.t
 t/release-portability.t
 weaver.ini

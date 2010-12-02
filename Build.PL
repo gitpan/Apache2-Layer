@@ -20,7 +20,7 @@ my %module_build_args = (
     'Alex J. G. Burzyński <ajgb@cpan.org>'
   ],
   'dist_name' => 'Apache2-Layer',
-  'dist_version' => '0.01',
+  'dist_version' => '1.103360',
   'license' => 'perl',
   'module_name' => 'Apache2::Layer',
   'recommends' => {},

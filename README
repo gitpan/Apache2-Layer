@@ -2,7 +2,7 @@ NAME
     Apache2::Layer - Layers for DocumentRoot
 
 VERSION
-    version 0.01
+    version 1.103360
 
 SYNOPSIS
         # in httpd.conf
@@ -13,6 +13,9 @@ SYNOPSIS
 
         # enable layers for whole server
         EnableDocumentRootLayers On
+
+        # disable location strip
+        DocumentRootLayersStripLocation Off
 
         # paths are relative to DocumentRoot
         DocumentRootLayers layered/christmas layered/promotions
@@ -34,6 +37,19 @@ SYNOPSIS
                 EnableDocumentRootLayers On
                 DocumentRootLayers images_v3 images_v2
             </LocationMatch>
+
+
+            <Location "/images">
+                DocumentRootLayersStripLocation On
+            </Location>
+
+            <Location "/images/company1">
+                DocumentRootLayers company1/images default/images
+            </Location>
+
+            <Location "/images/company2">
+                DocumentRootLayers company2/images default/images
+            </Location>
 
         </VirtualHost>
 
@@ -66,6 +82,46 @@ DIRECTIVES
         Context:  server config, virtual host, <Location*
 
     Enable use of "DocumentRootLayers".
+
+  DocumentRootLayersStripLocation
+        Syntax:   DocumentRootLayersStripLocation On|Off
+        Default:  DocumentRootLayersStripLocation On
+        Context:  server config, virtual host, <Location*
+
+    Remove the path specified in <Location>, <LocationMatch> from the URI
+    before searching for layered file.
+
+    That allows to simplify the file hieratchy tree, eg.
+
+        <Location "/images">
+            DocumentRootLayersStripLocation On
+        </Location>
+
+        <Location "/images/company1">
+            DocumentRootLayers company1/images default/images
+        </Location>
+
+        <Location "/images/company2">
+            DocumentRootLayers company2/images default/images
+        </Location>
+
+    for following requests:
+
+        /images/company1/headers/top.png 
+
+        /images/company2/headers/top.png
+
+    those paths would be searched:
+
+       company1/images/headers/top.png default/images/headers/top.png 
+
+       company2/images/headers/top.png default/images/headers/top.png
+
+    but with "DocumentRootLayersStripLocation Off":
+
+       company1/images/images/company1/headers/top.png default/images/images/company1/headers/top.png
+
+       company2/images/images/company2/headers/top.png default/images/images/company2/headers/top.png
 
   DocumentRootLayers
         Syntax:   DocumentRootLayers dir-path1 [dir-path2 ... dir-pathN]
